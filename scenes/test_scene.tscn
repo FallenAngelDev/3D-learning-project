@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://dg7y8r5h1vx3b"]
+
+[ext_resource type="Texture2D" uid="uid://c68rgke7e8afr" path="res://textures/floor/grass.png" id="1_jo80n"]
+[ext_resource type="Texture2D" uid="uid://jgw4orp58di8" path="res://textures/wall/default_wood.png" id="2_ebumm"]
+[ext_resource type="PackedScene" uid="uid://bfimd447im8j1" path="res://scenes/player/player.tscn" id="3_n4s2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87td5"]
+albedo_texture = ExtResource("2_ebumm")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qedol"]
+
+[sub_resource type="Environment" id="Environment_ugpx3"]
+background_mode = 2
+ambient_light_color = Color(0.643137, 0.643137, 0.643137, 1)
+ssr_fade_in = 0.579561
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fo63i"]
+albedo_texture = ExtResource("1_jo80n")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ibruv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8n3kn"]
+size = Vector3(22, 1, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.56211, 0, 0, 0, 1.79769, 0, 0, 0, 1.33804, 0, 0.66629, -0.365503)
+material_override = SubResource("StandardMaterial3D_87td5")
+mesh = SubResource("BoxMesh_qedol")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.845327, 0.534249, 0, -0.534249, -0.845327, 0, 10.4492, -18.53)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.903911, 0.427721, 0, -0.427721, 0.903911, 0, 1.54702, 5.26355)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugpx3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="floor" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(11.1386, 0, 0, 0, 1, 0, 0, 0, 9.96997, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fo63i")
+mesh = SubResource("PlaneMesh_ibruv")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_8n3kn")
+
+[node name="Player" parent="." instance=ExtResource("3_n4s2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81452, 1.77025, 1.7907)
