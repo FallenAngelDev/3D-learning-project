@@ -14,7 +14,7 @@ texture_filter = 0
 
 [sub_resource type="Environment" id="Environment_ugpx3"]
 background_mode = 2
-ambient_light_color = Color(0.643137, 0.643137, 0.643137, 1)
+ambient_light_color = Color(0.909804, 0.898039, 0.976471, 1)
 ssr_fade_in = 0.579561
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fo63i"]
@@ -38,16 +38,14 @@ mesh = SubResource("BoxMesh_qedol")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.845327, 0.534249, 0, -0.534249, -0.845327, 0, 10.4492, -18.53)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.903911, 0.427721, 0, -0.427721, 0.903911, 0, 1.54702, 5.26355)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ugpx3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
 
 [node name="floor" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(11.1386, 0, 0, 0, 1, 0, 0, 0, 9.96997, 0, 0, 0)
+transform = Transform3D(25.432, 0, 0, 0, 1.01108, 0, 0, 0, 32.4465, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_fo63i")
 mesh = SubResource("PlaneMesh_ibruv")
 skeleton = NodePath("../..")
@@ -56,4 +54,4 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_8n3kn")
 
 [node name="Player" parent="." instance=ExtResource("3_n4s2g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81452, 1.77025, 1.7907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79654, 1.77025, 1.7907)

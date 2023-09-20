@@ -8,6 +8,7 @@
 size = Vector3(1, 1.85392, 1)
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 2
 script = ExtResource("1_a8eod")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -15,3 +16,9 @@ mesh = SubResource("CapsuleMesh_88ab7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_aspxk")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.538024)
+current = true
